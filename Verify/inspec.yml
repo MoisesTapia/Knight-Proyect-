@@ -1,0 +1,11 @@
+name: Verify
+title: InSpec Profile
+maintainer: Moises Tapia, Dart-Security.
+copyright: Moises Tapia, Dart-Security.
+copyright_email: Dart
+license: Apache-2.0
+summary: Verify all modules of python are installed in the operative system
+version: 0.1.0
+supports:
+   platform: os
+inspec_version: ">= 2.3.23"
