@@ -18,7 +18,7 @@ control 'Module Urllib3' do
   desc ''
   describe pip('urllib3') do
     it {should be_installed}
-    its('version') { should eq '1.22' }
+    its('version') { should eq '1.24.2' }
   end
 end
 
@@ -72,5 +72,17 @@ control 'Module Urllib' do
   ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
   describe pip('urllib') do
     skip 'This module has been installed with python'
+  end
+end
+
+control 'Module Requests' do
+  impact 1
+  title 'Verify that module request are be installed'
+  desc ''
+
+  ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
+  describe pip('requests') do
+    it { should be_installed }
+    its('version') { should eq '2.20.0' }
   end
 end

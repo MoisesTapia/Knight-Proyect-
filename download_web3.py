@@ -12,6 +12,7 @@ import os
 import requests
 import socket
 import json
+from os.path import basename
 
 
 init()
@@ -20,9 +21,13 @@ try:
 
     def run():
         welcome()
-        downloadweb()
+        
+        web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
+        save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
+        
+        downloadweb(web,save)
 
-    def downloadweb():
+    def downloadweb(web,save):
 
         console = Console()
 
@@ -92,8 +97,49 @@ try:
                 dic = dom.headers
                 for date,key in dic.items():
                     print("|",date,"|",key,"|")
+        download_files(web,save)           
+                    
 
-
+    def download_files(web,save):
+        
+        #make_directory()
+        
+        print(Fore.LIGHTRED_EX + "Searching Files in directory" + Fore.RESET)
+        
+        url = 'https://'+web
+        response = urllib.request.urlopen(url)
+        source =response.read()
+        file = open(save+".txt", "wb")
+        file.write(source)
+        file.close()
+        
+        try:
+            
+            patten = '(http)?s:?(\/\/[^"]*\.(:png|jpg|jpeg|gif|png|svg|txt))'
+            for line in open(save+".txt"):
+                for m in re.findall(patten, line):
+                    print('https: ' + m[1])
+                    filename = basename(urllib.parse.urlsplit(m[1])[2])
+                    print(filename)
+                    request = 'https:' + urllib.parse.quote(m[1])
+                    try:
+                        
+                        img = urllib.request.urlopen(request).read()
+                        file = open(filename, "wb")
+                        file.write(img)
+                        file.close()
+                        print(Fore.GREEN + ">>>>>> Link Found with some images .....")
+                    except:
+                        
+                        print(Fore.YELLOW + ">>>>>> With Invalid Characters")
+                        pass
+                        break    
+        except AttributeError as ater:
+            print(Fore.RED + "[+] Module Error \n")
+            print(Fore.RED + ">>>>>> Proceso Detenito")
+        except ModuleNotFoundError as moder:
+            print(Fore.RED + "[+] Module not Found ", md)
+            
     def welcome():
         tprint('''
         Web
