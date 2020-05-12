@@ -13,6 +13,9 @@ import requests
 import socket
 import json
 from os.path import basename
+import shutil
+import glob
+
 
 
 init()
@@ -130,26 +133,35 @@ try:
                         file = open(filename, "wb")
                         file.write(img)
                         file.close()
-                        print(Fore.GREEN + ">>>>>> Link Found with some images .....")
+                        print(Fore.GREEN + ">>>>>> Link Found with some images ....." + Fore.RESET)
                     except:
                         
-                        print(Fore.YELLOW + ">>>>>> With Invalid Characters")
+                        print(Fore.YELLOW + ">>>>>> With Invalid Characters" + Fore.RESET)
                         pass
-                        break    
+                        break
+                    
+            make_directory()
+            
         except AttributeError as ater:
             print(Fore.RED + "[+] Module Error \n")
             print(Fore.RED + ">>>>>> Proceso Detenito")
         except ModuleNotFoundError as moder:
-            print(Fore.RED + "[+] Module not Found ", md)
+            print(Fore.RED + "[+] Module not Found ", moder)
 
         
-    #def make_directory():
-    #    if not os.path.exists('images/'):
-    #        os.makedirs('images/'):
-    #        
-    #        
-    #
-    #
+    def make_directory():
+        
+        ruta = os.getcwd()
+        origen = ruta
+        dest = ruta+'/images/'
+        if os.path.exists(origen):
+               try:
+                   arbol = shutil.copytree(origen,dest, ignore=shutil.ignore_patterns('*.py','*.md','LICENSE','*.txt','Verify'))
+                   print("Arbol copiado"+ arbol)
+               except:
+                   print("Error en la copia")
+                       
+    
     def welcome():
         tprint('''
         Web

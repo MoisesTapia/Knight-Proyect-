@@ -86,3 +86,27 @@ control 'Module Requests' do
     its('version') { should eq '2.20.0' }
   end
 end
+
+control 'Module Glob' do
+  impact 1
+  title 'Verify that module request are be installed'
+  desc ''
+
+  ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
+
+  describe pip('glob') do
+    skip 'This module has been installed with python'
+  end
+end
+
+control 'Module Shutil' do
+  impact 1
+  title 'Verify that module request are be installed'
+  desc ''
+
+  ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
+
+  describe pip('shutil') do
+    skip 'This module has been installed with python'
+  end
+end
