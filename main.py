@@ -4,6 +4,7 @@ from rich.console import Console
 from rich.table import Column, Table
 from colorama import Fore, init, Back, Style
 from art import *
+import os
 
 init()
 
