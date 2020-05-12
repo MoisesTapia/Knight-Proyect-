@@ -70,7 +70,7 @@ try:
                 info_2=requests.get("https://ipinfo.io/"+gethostby_+"/json")
                 res = json.loads(info_2.text)
 
-                location = res["loc"]
+                #location = res["loc"]
                 reg = res["region"]
                 city = res["city"]
                 country = res["country"]
