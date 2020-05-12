@@ -5,4 +5,4 @@ install:
   - pip install -r requirements.txt
 script:
   - chmod 700 download_web3.py
-  - ./download_web3.py
+  - python3 download_web3.py
