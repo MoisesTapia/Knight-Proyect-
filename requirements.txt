@@ -2,3 +2,4 @@ art==4.6
 rich==1.0.3
 colorama==0.4.3
 urllib3>=1.24.2
+requests==2.20.0
