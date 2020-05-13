@@ -25,9 +25,6 @@ try:
 
     def run():
         
-        
-        #web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
-        #save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
         web = "hc-security.com.mx"
         save = "final"
         
@@ -106,9 +103,8 @@ try:
         download_files(web,save)
                     
     def download_files(web,save):
-        
-        #make_directory()
-        
+
+
         print(Fore.LIGHTRED_EX + "Searching Files in directory" + Fore.RESET)
         
         url = 'https://'+web
