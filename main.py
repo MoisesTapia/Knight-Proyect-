@@ -5,15 +5,17 @@ from rich.table import Column, Table
 from colorama import Fore, init, Back, Style
 from art import *
 import os
+import download_web3
 
 init()
 
 def run():
+    
     welcome()
-
     menu()
 
 def menu():
+    
 
     console = Console()
 
@@ -28,31 +30,55 @@ def menu():
         "2",
         "[cyan]Web Menu[/cyan]"
     )
+    
     console.print(options)
+    
+    try:
+        preg = True     
+        while preg:
 
+            opc = input(Fore.LIGHTMAGENTA_EX + " >>  " + Fore.RESET )
+            opc = int(opc)
+
+            if opc == 1:
+                print(Fore.LIGHTRED_EX + "Modulo en Desarrollo" + Fore.RESET)
+                preg == False
+            elif opc == 2:
+                download_web3.run()
+                #print(Fore.LIGHTRED_EX + "Modulo en Desarrollo" + Fore.RESET)
+                preg == False
+            else:
+                print(Fore.LIGHTRED_EX + "Opcion no encontrada" + Fore.RESET)
+                
+    except KeyboardInterrupt as ky:
+        print(Fore.LIGHTCYAN_EX + "\n\nInterrumpido por el usuario..." + Fore.RESET)
+            
+            
 def welcome():
-
-        console = Console()
-
-        tprint("Dart - Security", decoration="barcode1")
-        art_0 = art("coffe")
-        print(art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx" + Fore.RESET + "\n")
-
-        authors = Table(show_header=True, header_style="bold green")
-        authors.add_column("Name", style="dim", justify="center")
-        authors.add_column("Github", style="dim", justify="center")
-        authors.add_column("Page", style="dim", justify="center")
-        authors.add_row(
-            "Moises Tapia",
-            "[yellow]https://github.com/MoisesTapia[/yellow]",
-            "[underline]hc-security.com.mx[/underline]"
-        )
-        authors.add_row(
-            "Dart - Security",
-            "[green]https://github.com/dart-security[/green]",
-            "[underline]hc-security.com.mx[/underline]"
-        )
-
-        console.print(authors)
+    
+    console = Console()
+    tprint("Dart - Security", decoration="barcode1")
+    art_0 = art("coffe")
+    print("\n"+art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx " + Fore.RESET + Fore.LIGHTGREEN_EX + "- Dart-Security " + Fore.RESET + Fore.LIGHTBLUE_EX + "- Adan Vazquez " + Fore.RESET + "\n")
+    authors = Table(show_header=True, header_style="bold green")
+    authors.add_column("Name", style="dim", justify="center")
+    authors.add_column("Github", style="dim", justify="center")
+    authors.add_column("Page", style="dim", justify="center")
+    authors.add_row(
+        "Moises Tapia",
+        "[yellow]https://github.com/MoisesTapia[/yellow]",
+        "[underline]hc-security.com.mx[/underline]"
+    )
+    authors.add_row(
+        "Dart - Security",
+        "[green]https://github.com/dart-security[/green]",
+        "[underline]hc-security.com.mx[/underline]"
+    )
+    authors.add_row(
+        "Adan Vazquez",
+        "[blue]https://github.com/AdanOSwin[/blue]",
+        "[underline]hc-security.com.mx[/underline]"
+    )
+    console.print(authors)
 
 run()

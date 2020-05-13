@@ -16,11 +16,12 @@ from os.path import basename
 
 
 init()
-
+FOLDER = "images/"
 try:
 
     def run():
         welcome()
+        folders()
         
         web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
         save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
@@ -124,7 +125,7 @@ try:
                     try:
                         
                         img = urllib.request.urlopen(request).read()
-                        file = open(filename, "wb")
+                        file = open("images/"+filename, "wb")
                         file.write(img)
                         file.close()
                         print(Fore.GREEN + ">>>>>> Link Found with some images .....")
@@ -140,19 +141,9 @@ try:
         except ModuleNotFoundError as moder:
             print(Fore.RED + "[+] Module not Found ", md)
 
-    def make_directory():
-        
-        ruta = os.getcwd()
-        origen = ruta
-        dest = ruta+'/images/'
-        if os.path.exists(origen):
-               try:
-                   arbol = shutil.copytree(origen,dest, ignore=shutil.ignore_patterns('*.py','*.md','LICENSE','*.txt','Verify'))
-                   print("Arbol copiado"+ arbol)
-               except:
-                   print("Error en la copia")
-                       
- 
+    def folders():
+        if not os.path.exists(FOLDER):
+            os.makedirs(FOLDER) 
            
     def welcome():
         tprint('''

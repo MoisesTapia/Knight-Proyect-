@@ -19,7 +19,8 @@ import glob
 
 
 init()
-FOLDER ='images'
+
+FOLDER ='images/'
 
 try:
 
@@ -29,7 +30,9 @@ try:
         save = "final"
         
         welcome()
+        folders()
         downloadweb(web,save)
+        
 
     def downloadweb(web,save):
 
@@ -115,7 +118,7 @@ try:
         file.close()
         
         try:
-            
+            # make_directory()
             patten = '(http)?s:?(\/\/[^"]*\.(:png|jpg|jpeg|gif|png|svg|txt))'
             for line in open(save+".txt"):
                 for m in re.findall(patten, line):
@@ -124,40 +127,24 @@ try:
                     print(filename)
                     request = 'https:' + urllib.parse.quote(m[1])
                     try:
-                        
                         img = urllib.request.urlopen(request).read()
-                        file = open(filename, "wb")
+                        file = open("images/"+filename, "wb")
                         file.write(img)
                         file.close()
                         print(Fore.GREEN + ">>>>>> Link Found with some images ....." + Fore.RESET)
                     except:
-                        
                         print(Fore.YELLOW + ">>>>>> With Invalid Characters" + Fore.RESET)
                         pass
-                        break
-                    
-            make_directory()
-            
+                    break
         except AttributeError as ater:
             print(Fore.RED + "[+] Module Error \n")
             print(Fore.RED + ">>>>>> Proceso Detenito")
         except ModuleNotFoundError as moder:
             print(Fore.RED + "[+] Module not Found ", moder)
-
-        
-    def make_directory():
-        
-        ruta = os.getcwd()
-        origen = ruta
-        dest = ruta+'/images/'
-        if os.path.exists(origen):
-               try:
-                   arbol = shutil.copytree(origen,dest, ignore=shutil.ignore_patterns('*.py','*.md','LICENSE','*.txt','Verify'))
-                   print("Arbol copiado"+ arbol)
-               except:
-                   print("Error en la copia")
-                       
-    
+                    
+    def folders():
+        if not os.path.exists(FOLDER):
+            os.makedirs(FOLDER)  
     def welcome():
         tprint('''
         Web
