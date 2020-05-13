@@ -13,18 +13,22 @@ import requests
 import socket
 import json
 from os.path import basename
+import shutil
+import glob
+
 
 
 init()
+FOLDER ='images'
 
 try:
 
     def run():
+        
+        web = "hc-security.com.mx"
+        save = "final"
+        
         welcome()
-        
-        web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
-        save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
-        
         downloadweb(web,save)
 
     def downloadweb(web,save):
@@ -33,9 +37,7 @@ try:
 
         user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
         heraders = {'User-Agent': user_agent}
-
-        web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
-        save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
+        
         request = urllib.request.Request("https://" + web, headers=heraders)
         
         with urllib.request.urlopen(request) as response:
@@ -97,9 +99,9 @@ try:
                 dic = dom.headers
                 for date,key in dic.items():
                     print("|",date,"|",key,"|")
-        download_files(web,save)           
+        
+        download_files(web,save)
                     
-
     def download_files(web,save):
 
 
@@ -127,19 +129,22 @@ try:
                         file = open(filename, "wb")
                         file.write(img)
                         file.close()
-                        print(Fore.GREEN + ">>>>>> Link Found with some images .....")
+                        print(Fore.GREEN + ">>>>>> Link Found with some images ....." + Fore.RESET)
                     except:
                         
-                        print(Fore.YELLOW + ">>>>>> With Invalid Characters")
+                        print(Fore.YELLOW + ">>>>>> With Invalid Characters" + Fore.RESET)
                         pass
                         break
-            make_directory()    
+                    
+            make_directory()
+            
         except AttributeError as ater:
             print(Fore.RED + "[+] Module Error \n")
             print(Fore.RED + ">>>>>> Proceso Detenito")
         except ModuleNotFoundError as moder:
-            print(Fore.RED + "[+] Module not Found ", md)
+            print(Fore.RED + "[+] Module not Found ", moder)
 
+        
     def make_directory():
         
         ruta = os.getcwd()
@@ -152,8 +157,7 @@ try:
                except:
                    print("Error en la copia")
                        
- 
-           
+    
     def welcome():
         tprint('''
         Web
@@ -171,6 +175,7 @@ try:
              if x in lis:
                  ip += x
          return ip
+    
     
     run()
 except KeyboardInterrupt as kbi:
