@@ -5,7 +5,7 @@ from rich.table import Column, Table
 from colorama import Fore, init, Back, Style
 from art import *
 import os
-import download_web3
+
 
 init()
 
@@ -44,14 +44,13 @@ def menu():
                 print(Fore.LIGHTRED_EX + "Modulo en Desarrollo" + Fore.RESET)
                 preg == False
             elif opc == 2:
-                download_web3.run()
-                #print(Fore.LIGHTRED_EX + "Modulo en Desarrollo" + Fore.RESET)
+                os.system("python3 download_web3.py")
+                # print(Fore.LIGHTRED_EX + "Modulo en Desarrollo" + Fore.RESET)
                 preg == False
             else:
                 print(Fore.LIGHTRED_EX + "Opcion no encontrada" + Fore.RESET)
-                
     except KeyboardInterrupt as ky:
-        print(Fore.LIGHTCYAN_EX + "\n\nInterrumpido por el usuario..." + Fore.RESET)
+        print(Fore.LIGHTCYAN_EX + f"\n\nInterrumpido por el usuario...{ky}" + Fore.RESET)
             
             
 def welcome():

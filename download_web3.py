@@ -34,9 +34,7 @@ try:
 
         user_agent = 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:47.0) Gecko/20100101 Firefox/47.0'
         heraders = {'User-Agent': user_agent}
-
-        web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
-        save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
+        
         request = urllib.request.Request("https://" + web, headers=heraders)
         
         with urllib.request.urlopen(request) as response:
@@ -128,13 +126,12 @@ try:
                         file = open("images/"+filename, "wb")
                         file.write(img)
                         file.close()
-                        print(Fore.GREEN + ">>>>>> Link Found with some images .....")
+                        print(Fore.GREEN + ">>>>>> Link Found with some images ....."+ Fore.RESET)
                     except:
                         
-                        print(Fore.YELLOW + ">>>>>> With Invalid Characters")
+                        print(Fore.YELLOW + ">>>>>> With Invalid Characters"+ Fore.RESET)
                         pass
-                        break
-            make_directory()    
+                    break    
         except AttributeError as ater:
             print(Fore.RED + "[+] Module Error \n")
             print(Fore.RED + ">>>>>> Proceso Detenito")
