@@ -37,9 +37,9 @@ $ inspec exec Verify/
 
 ### Salida de inspec.
 
-![alt text][logo]
+![alt text][logo1]
 
-[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/scanninspec.png "Inspec output"
+[logo1]: https://github.com/MoisesTapia/Knight-Proyect-/blob/master/img/inspecexec.png "Inspec output"
 ### Forma de Ejecutar el Script
 
 ```bash
