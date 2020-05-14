@@ -33,7 +33,7 @@ $ inspec exec Verify/
 ### Aceptar la Licencia de inspec para la aejecucion.
 ![alt text][logo]
 
-[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/licenses2.png "Inspec output"
+[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/licenses2.png "Inspec"
 
 ### Salida de inspec.
 
