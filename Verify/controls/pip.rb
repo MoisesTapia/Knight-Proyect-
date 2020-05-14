@@ -88,7 +88,17 @@ control 'Module Requests' do
     its('version') { should eq '2.22.0' }
   end
 end
+control 'Module netifaces' do
+  impact 1
+  title 'Verify that module request are be installed'
+  desc ''
 
+  ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
+  describe pip('netifaces') do
+    it { should be_installed }
+    its('version') { should eq '0.10.9' }
+  end
+end
 control 'Module Glob' do
   impact 1
   title 'Verify that module request are be installed'

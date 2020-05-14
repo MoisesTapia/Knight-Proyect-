@@ -46,3 +46,12 @@ $ inspec exec Verify/
 $ python3 main.py
 ```
 
+## Direcciones IP
+
+Si la direccion IP privada no sale en el reposrte del script probablemente es por que no este agregada de manera correcta revisa el codigo en la parte de :
+
+```python
+ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+
+```
+donde puedes cambiar el __eth0__ por tu interfaz de red que tengas activa en ese momento si tienes una __wlan0__ o __wlan1__ solo agregala entre las comillas para que las puedas visualizar de manera correcta

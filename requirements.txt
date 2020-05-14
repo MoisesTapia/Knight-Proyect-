@@ -4,3 +4,4 @@ colorama==0.4.3
 urllib3>=1.24.2
 requests==2.20.0
 publicip==1.0.1
+netifaces==0.10.9
