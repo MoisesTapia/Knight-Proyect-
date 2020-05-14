@@ -33,13 +33,13 @@ $ inspec exec Verify/
 ### Aceptar la Licencia de inspec para la aejecucion.
 ![alt text][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Inspec output"
+[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/licenses2.png "Inspec output"
 
 ### Salida de inspec.
 
 ![alt text][logo]
 
-[logo]: https://github.com/adam-p/markdown-here/raw/master/src/common/images/icon48.png "Inspec output"
+[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/scanninspec.png "Inspec output"
 ### Forma de Ejecutar el Script
 
 ```bash
