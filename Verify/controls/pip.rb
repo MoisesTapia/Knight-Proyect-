@@ -18,7 +18,8 @@ control 'Module Urllib3' do
   desc ''
   describe pip('urllib3') do
     it {should be_installed}
-    its('version') { should eq '1.24.2' }
+    #its('version') { should eq '1.24.2' }
+    its('version') { should eq '1.25.8' }
   end
 end
 
@@ -83,7 +84,8 @@ control 'Module Requests' do
   ref 'Get more information in', url: 'https://docs.python.org/3.6/library/re.html'
   describe pip('requests') do
     it { should be_installed }
-    its('version') { should eq '2.20.0' }
+    #its('version') { should eq '2.20.0' }
+    its('version') { should eq '2.22.0' }
   end
 end
 

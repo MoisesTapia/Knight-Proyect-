@@ -19,9 +19,30 @@ o
 $ sudo chmod  700 install.sh
 $ ./install.sh
 ```
+### Verificar instalacion.
 
+```bash
+╭─moisestapia@Equinockx ~/Proyect/Knight-Proyect- ‹master*› 
+╰─$ inspec --version
+```
 #### Forma de ejecutar:
 
 ```bash
 $ inspec exec Verify/
 ```
+### Aceptar la Licencia de inspec para la aejecucion.
+![alt text][logo]
+
+[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/licenses2.png "Inspec"
+
+### Salida de inspec.
+
+![alt text][logo]
+
+[logo]: https://github.com/dart-security/Knight-Proyect-/blob/master/img/scanninspec.png "Inspec output"
+### Forma de Ejecutar el Script
+
+```bash
+$ python3 main.py
+```
+
