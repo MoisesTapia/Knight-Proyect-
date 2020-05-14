@@ -106,10 +106,10 @@ try:
                 # ------------------------------------------------------------------------
                 ip_pub =get("https://api.ipify.org").text
 
-                ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+                #ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
                 
                 print("\n" + Fore.LIGHTYELLOW_EX + " [+] Info network" + Fore.RESET)
-                datos = [[ip_priv,ip_pub,gethostby_,]]
+                datos = [["ip_priv",ip_pub,gethostby_,]]
                 detalles ='''\
                 ----------------------------------------------------
                 |   Private(src)  |   Public       |   Web(dst)    |
