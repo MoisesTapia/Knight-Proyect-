@@ -55,3 +55,21 @@ ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
 
 ```
 donde puedes cambiar el __eth0__ por tu interfaz de red que tengas activa en ese momento si tienes una __wlan0__ o __wlan1__ solo agregala entre las comillas para que las puedas visualizar de manera correcta
+
+Ejemplo:
+Debian 10:
+```python
+ip_priv = ni.ifaddresses('enps3')[ni.AF_INET][0]['addr']
+
+```
+Kali linux:
+```python
+ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+```
+o si tienes __eth1__
+```python
+ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+```
+
+# Demo.
+[![asciicast](https://asciinema.org/a/330663.svg)](https://asciinema.org/a/330663)

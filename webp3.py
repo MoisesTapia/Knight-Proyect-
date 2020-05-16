@@ -10,9 +10,10 @@ import re
 from rich.console import Console
 from rich.table import Column, Table
 import os
+import socket
 import requests
 from requests import get
-import socket
+from socket import AF_INET, SOCK_STREAM
 import json
 from os.path import basename
 import shutil
@@ -30,12 +31,13 @@ try:
     def run():
         
         web = "hc-security.com.mx"
-        save = "final"
+        save = "Testing"
         
         welcome()
         folders()
         downloadweb(web,save)
-
+        port_scann(web)
+        
     def downloadweb(web,save):
 
         console = Console()
@@ -126,7 +128,6 @@ try:
                 for date,key in dic.items():
                     print("|",date,"|",key,"|")
                 # ---------------------------------------------------------------------------------------------------
-        
         download_files(web,save)
                     
     def download_files(web,save):
@@ -165,7 +166,28 @@ try:
             print(Fore.RED + " [+] Proceso Detenito")
         except ModuleNotFoundError as moder:
             print(Fore.RED + "[+] Module not Found ", moder)
-                    
+
+    def port_scann(web):
+
+        start = 1
+        end = 6000
+        ip = socket.gethostbyname(web)
+        print("\n" + Fore.LIGHTBLUE_EX+"[>>>>>] Starting Scanning: ", ip +Fore.RESET+ "\n")
+
+        for port in range(start,end):
+            #print("\033[3;36m"+"[***] Listening Port" + " " + str(port) + "..." + "\033[0;m")
+            s = socket.socket(AF_INET,SOCK_STREAM)
+            s.settimeout(5)
+            if(s.connect_ex((ip,port))==0):
+                print("\033[1;32m"+"[ ✔ ] Open Port " + str(port) + "\033[0;m")
+                status = "[+] Open port: " + str(port)
+                file = open("ports.txt", "a")
+                file.write(str(status) + os.linesep)
+                file.close()
+            s.close()
+
+        print("\n"+Fore.LIGHTCYAN_EX+"[<<<<<] Scanning is Done.... and scann saved" + Fore.RESET)
+
     def folders():
         if not os.path.exists(FOLDER):
             os.makedirs(FOLDER)  
@@ -176,6 +198,8 @@ try:
         Gathering''', decoration="barcode1") # , font="random-small"
         art_0 = art("coffe")
         print(art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx" + Fore.RESET + "\n")
+    
+    #def find_email():
     
     run()
 except KeyboardInterrupt as kbi:

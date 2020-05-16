@@ -56,7 +56,19 @@ def menu():
 def welcome():
     
     console = Console()
-    tprint("Dart - Security", decoration="barcode1")
+    tprint("Knight - Proyect")
+    print(Fore.LIGHTCYAN_EX+'''
+
+                      (O)
+                  <M
+       o          <M  Dart - Security!!!
+      /| ......  /:M\------------------------------------------------,,,,,,
+    (O)[]XXXXXX[]I:K+}=====<{H}>================================------------>
+      \| ^^^^^^  \:W/------------------------------------------------\''\'\'''
+       o          <W  Information Gathering
+                  <W
+                  (O)
+    '''+Fore.RESET)
     art_0 = art("coffe")
     print("\n"+art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx " + Fore.RESET + Fore.LIGHTGREEN_EX + "- Dart-Security " + Fore.RESET + Fore.LIGHTBLUE_EX + "- Adan Vazquez " + Fore.RESET + "\n")
     authors = Table(show_header=True, header_style="bold green")
