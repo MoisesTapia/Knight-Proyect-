@@ -30,7 +30,7 @@ try:
 
     def run():
         
-        web = "es-la.facebook.com"
+        web = "hc-security.com.mx"
         save = "Testing"
         
         welcome()
