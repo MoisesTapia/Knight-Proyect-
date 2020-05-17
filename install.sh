@@ -21,4 +21,9 @@ echo "Terminando"
 clear
 echo "Verificando instalacion"
 echo $AUX
+sleep 4
+echo "Instalando nmap"
+sudo apt-get install nmap -y
+sleep 2
+echo "Done"
 
