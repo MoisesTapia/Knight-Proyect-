@@ -10,7 +10,7 @@ echo "Espere un momento..."
 sleep 2
 echo "Descargando Inspec espere un momento ..."
 sudo wget https://packages.chef.io/files/stable/inspec/4.18.111/debian/10/inspec_4.18.111-1_amd64.deb
-clear 
+clear
 echo "Instalando Inspec"
 sleep 5
 sudo dpkg -i inspec_4.18.111-1_amd64.deb
@@ -25,5 +25,6 @@ sleep 4
 echo "Instalando nmap"
 sudo apt-get install nmap -y
 sleep 2
+export PATH="$PATH:/usr/local/nmap/bin"
 echo "Done"
 
