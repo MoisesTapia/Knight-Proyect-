@@ -38,7 +38,7 @@ try:
         welcome_infoghatering()
         folders()
         downloadweb(web,save)
-        port_scann(web)
+        # port_scann(web)
     def downloadweb(web,save):
 
         console = Console()
@@ -167,54 +167,30 @@ try:
         except ModuleNotFoundError as moder:
             print(Fore.RED + "[+] Module not Found ", moder)
 
-    def port_scann(web):
-        
-        nm = nmap.PortScanner()
-        gethostby_ = socket.gethostbyname(web)
-
-        portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
-        nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
-
-        
-        host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
-
-        file = open('scan.txt','w')
-        for hosts,status in host_list:
-            print (hosts,status)
-            file.write(hosts+'\n')
-
-        array_porlist=portlist.split(',')
-        for port in array_porlist:
-            state= nm[gethostby_]['tcp'][int(port)]['state']
-            if state == "open":
-
-                print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
-                file.write("Port: "+str(port)+" state: "+state+ "\n")
-        file.close()
-    def port_scann(web):
-
-        nm = nmap.PortScanner()
-        gethostby_ = socket.gethostbyname(web)
-
-        portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
-        nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
-
-        
-        host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
-
-        file = open('scan.txt','w')
-        for hosts,status in host_list:
-            print (hosts,status)
-            file.write(hosts+'\n')
-
-        array_porlist=portlist.split(',')
-        for port in array_porlist:
-            state= nm[gethostby_]['tcp'][int(port)]['state']
-            if state == "open":
-
-                print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
-                file.write("Port: "+str(port)+" state: "+state+ "\n")
-        file.close()
+    #def port_scann(web):
+    #    
+    #    nm = nmap.PortScanner()
+    #    gethostby_ = socket.gethostbyname(web)
+    #
+    #    portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
+    #    nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
+    #
+    #    
+    #    host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
+    #
+    #    file = open('scan.txt','w')
+    #    for hosts,status in host_list:
+    #        print (hosts,status)
+    #        file.write(hosts+'\n')
+    #
+    #    array_porlist=portlist.split(',')
+    #    for port in array_porlist:
+    #        state= nm[gethostby_]['tcp'][int(port)]['state']
+    #        if state == "open":
+    #
+    #            print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
+    #            file.write("Port: "+str(port)+" state: "+state+ "\n")
+    #    file.close()
     def folders():
         if not os.path.exists(FOLDER):
             os.makedirs(FOLDER)  
