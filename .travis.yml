@@ -6,5 +6,5 @@ install:
 script:
   - chmod 700 install.sh
   - sudo bash install.sh
-  - chmod 700 download_web3.py
+  - chmod 700 knightwebpy3.py
   - python3 webp3.py
