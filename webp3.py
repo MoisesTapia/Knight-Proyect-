@@ -168,8 +168,7 @@ try:
             print(Fore.RED + "[+] Module not Found ", moder)
 
     def port_scann(web):
-
-
+        
         nm = nmap.PortScanner()
         gethostby_ = socket.gethostbyname(web)
 

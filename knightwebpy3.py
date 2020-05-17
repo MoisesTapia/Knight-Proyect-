@@ -18,7 +18,8 @@ import requests
 import json
 import shutil
 import netifaces as ni
-import nmap
+import 
+import time
 
 
 
