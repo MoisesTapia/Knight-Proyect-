@@ -2,23 +2,24 @@
 # Author: Moises Tapia
 
 from art import *
-import urllib.request
 from colorama import Fore, init, Back, Style
-import urllib.parse
-import re
 from rich.console import Console
 from rich.table import Column, Table
+from requests import get
+from socket import AF_INET, SOCK_STREAM
+from os.path import basename
+import glob
+import urllib.request
+import urllib.parse
+import re
 import os
 import socket
 import requests
-from requests import get
-from socket import AF_INET, SOCK_STREAM
 import json
-from os.path import basename
 import shutil
-import glob
-import publicip
 import netifaces as ni
+import nmap
+
 
 
 init()
@@ -30,7 +31,7 @@ try:
         folders()
         
         web = input(Fore.LIGHTBLUE_EX + "[*] Enter your web: \n >> " + Fore.RESET)
-        save = input(Fore.YELLOW + "[*] Name of your safe file: " + Fore.RESET)
+        save = input(Fore.YELLOW + "[*] Name to save file: " + Fore.RESET)
         
         downloadweb(web,save)
         port_scann(web)
@@ -166,23 +167,28 @@ try:
 
     def port_scann(web):
 
-        start = 1
-        end = 6000
-        ip = socket.gethostbyname(web)
-        print("\n" + Fore.LIGHTBLUE_EX+"[>>>>>] Starting Scanning: ", ip +Fore.RESET+ "\n")
+        nm = nmap.PortScanner()
+        gethostby_ = socket.gethostbyname(web)
 
-        for port in range(start,end):
-            s = socket.socket(AF_INET,SOCK_STREAM)
-            s.settimeout(5)
-            if(s.connect_ex((ip,port))==0):
-                print("\033[1;32m"+"[ ✔ ] Open Port " + str(port) + "\033[0;m")
-                status = "[ ✔ ] Open port: " + str(port)
-                file = open("ports.txt", "a")
-                file.write(str(status) + os.linesep)
-                file.close()
-            s.close()
+        portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
+        nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
 
-        print("\n"+Fore.LIGHTCYAN_EX+"[<<<<<] Scanning is Done.... and scann saved" + Fore.RESET)
+        
+        host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
+
+        file = open('scan.txt','w')
+        for hosts,status in host_list:
+            print (hosts,status)
+            file.write(hosts+'\n')
+
+        array_porlist=portlist.split(',')
+        for port in array_porlist:
+            state= nm[gethostby_]['tcp'][int(port)]['state']
+            if state == "open":
+
+                print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
+                file.write("Port: "+str(port)+" state: "+state+ "\n")
+        file.close()
 
     def folders():
         if not os.path.exists(FOLDER):
@@ -194,8 +200,6 @@ try:
         Gathering''', decoration="barcode1") # , font="random-small"
         art_0 = art("coffe")
         print(art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx" + Fore.RESET + "\n")
-    
-    #def find_email():
     
     run()
 except KeyboardInterrupt as kbi:

@@ -20,7 +20,8 @@ import shutil
 import glob
 import publicip
 import netifaces as ni
-
+import nmap
+import time
 
 init()
 
@@ -33,11 +34,11 @@ try:
         web = "hc-security.com.mx"
         save = "Testing"
         
-        welcome()
+        authors_welcome()
+        welcome_infoghatering()
         folders()
         downloadweb(web,save)
         port_scann(web)
-        
     def downloadweb(web,save):
 
         console = Console()
@@ -128,8 +129,7 @@ try:
                 for date,key in dic.items():
                     print("|",date,"|",key,"|")
                 # ---------------------------------------------------------------------------------------------------
-        download_files(web,save)
-                    
+        download_files(web,save)                    
     def download_files(web,save):
 
 
@@ -169,38 +169,104 @@ try:
 
     def port_scann(web):
 
-        start = 1
-        end = 6000
-        ip = socket.gethostbyname(web)
-        print("\n" + Fore.LIGHTBLUE_EX+"[>>>>>] Starting Scanning: ", ip +Fore.RESET+ "\n")
 
-        for port in range(start,end):
-            #print("\033[3;36m"+"[***] Listening Port" + " " + str(port) + "..." + "\033[0;m")
-            s = socket.socket(AF_INET,SOCK_STREAM)
-            s.settimeout(5)
-            if(s.connect_ex((ip,port))==0):
-                print("\033[1;32m"+"[ ✔ ] Open Port " + str(port) + "\033[0;m")
-                status = "[+] Open port: " + str(port)
-                file = open("ports.txt", "a")
-                file.write(str(status) + os.linesep)
-                file.close()
-            s.close()
+        nm = nmap.PortScanner()
+        gethostby_ = socket.gethostbyname(web)
 
-        print("\n"+Fore.LIGHTCYAN_EX+"[<<<<<] Scanning is Done.... and scann saved" + Fore.RESET)
+        portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
+        nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
 
+        
+        host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
+
+        file = open('scan.txt','w')
+        for hosts,status in host_list:
+            print (hosts,status)
+            file.write(hosts+'\n')
+
+        array_porlist=portlist.split(',')
+        for port in array_porlist:
+            state= nm[gethostby_]['tcp'][int(port)]['state']
+            if state == "open":
+
+                print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
+                file.write("Port: "+str(port)+" state: "+state+ "\n")
+        file.close()
+    def port_scann(web):
+
+        nm = nmap.PortScanner()
+        gethostby_ = socket.gethostbyname(web)
+
+        portlist=" 1,21,22,23,53,80,110,135,139,143,8080,443,389,445,591,993,995,2086,3389,3306,3128,3030,9898,10000,19226,12345,31337" # 21,22,23,135,139,80,8080,443
+        nm.scan(hosts=web,arguments='-T3 -n -Pn -p' + portlist)
+
+        
+        host_list =[(x,nm[x]['status']['state']) for x in nm.all_hosts()]
+
+        file = open('scan.txt','w')
+        for hosts,status in host_list:
+            print (hosts,status)
+            file.write(hosts+'\n')
+
+        array_porlist=portlist.split(',')
+        for port in array_porlist:
+            state= nm[gethostby_]['tcp'][int(port)]['state']
+            if state == "open":
+
+                print (Fore.LIGHTCYAN_EX+"[ ✔ ] Open Port: "+str(port)+"  "+" state: " + state + Fore.RESET)
+                file.write("Port: "+str(port)+" state: "+state+ "\n")
+        file.close()
     def folders():
         if not os.path.exists(FOLDER):
             os.makedirs(FOLDER)  
-    def welcome():
+    def welcome_infoghatering():
         tprint('''
         Web
         Information
         Gathering''', decoration="barcode1") # , font="random-small"
         art_0 = art("coffe")
         print(art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx" + Fore.RESET + "\n")
-    
-    #def find_email():
-    
+
+    def authors_welcome():
+
+        console = Console()
+        tprint("Knight - Proyect")
+        print(Fore.LIGHTCYAN_EX+''' 
+                          (O)
+                      <M
+           o          <M  Dart - Security!!!
+          /| ......  /:M\------------------------------------------------,,,,,,
+        (O)[]XXXXXX[]I:K+}=====<{H}>================================------------>
+          \| ^^^^^^  \:W/------------------------------------------------\''\'\'''
+           o          <W  Information Gathering
+                      <W
+                      (O)
+        '''+Fore.RESET)
+        art_0 = art("coffe")
+        print("\n"+art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx " + Fore.RESET + Fore.LIGHTGREEN_EX + "- Dart-Security " + Fore.RESET + Fore.LIGHTBLUE_EX + "- Adan Vazquez " + Fore.RESET + "\n")
+        authors = Table(show_header=True, header_style="bold green")
+        authors.add_column("Name", style="dim", justify="center")
+        authors.add_column("Github", style="dim", justify="center")
+        authors.add_column("Page", style="dim", justify="center")
+        authors.add_row(
+            "Moises Tapia",
+            "[yellow]https://github.com/MoisesTapia[/yellow]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        authors.add_row(
+            "Dart - Security",
+            "[green]https://github.com/dart-security[/green]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        authors.add_row(
+            "Adan Vazquez",
+            "[blue]https://github.com/AdanOSwin[/blue]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        console.print(authors)
+        time.sleep(5)
+        os.system ("clear")
+
     run()
 except KeyboardInterrupt as kbi:
     print(Fore.RED + "\n Programa interrumpido por el usuario ...." + Fore.RESET)

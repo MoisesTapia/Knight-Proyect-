@@ -43,7 +43,7 @@ $ inspec exec Verify/
 ### Forma de Ejecutar el Script
 
 ```bash
-$ python3 main.py
+$ python3 knightwebpy3.py
 ```
 
 ## Direcciones IP
