@@ -18,7 +18,7 @@ import requests
 import json
 import shutil
 import netifaces as ni
-import 
+import nmap
 import time
 
 
@@ -28,6 +28,8 @@ FOLDER = "images/"
 try:
 
     def run():
+        
+        authors_welcome()
         welcome()
         folders()
         
@@ -201,6 +203,46 @@ try:
         Gathering''', decoration="barcode1") # , font="random-small"
         art_0 = art("coffe")
         print(art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx" + Fore.RESET + "\n")
+
+    def authors_welcome():
+
+        console = Console()
+        tprint("Knight - Proyect")
+        print(Fore.LIGHTCYAN_EX+''' 
+                          (O)
+                      <M
+           o          <M  Dart - Security!!!
+          /| ......  /:M\------------------------------------------------,,,,,,
+        (O)[]XXXXXX[]I:K+}=====<{H}>================================------------>
+          \| ^^^^^^  \:W/------------------------------------------------\''\'\'''
+           o          <W  Information Gathering
+                      <W
+                      (O)
+        '''+Fore.RESET)
+        art_0 = art("coffe")
+        print("\n"+art_0 + Fore.LIGHTYELLOW_EX +" By: Equinockx " + Fore.RESET + Fore.LIGHTGREEN_EX + "- Dart-Security " + Fore.RESET + Fore.LIGHTBLUE_EX + "- Adan Vazquez " + Fore.RESET + "\n")
+        authors = Table(show_header=True, header_style="bold green")
+        authors.add_column("Name", style="dim", justify="center")
+        authors.add_column("Github", style="dim", justify="center")
+        authors.add_column("Page", style="dim", justify="center")
+        authors.add_row(
+            "Moises Tapia",
+            "[yellow]https://github.com/MoisesTapia[/yellow]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        authors.add_row(
+            "Dart - Security",
+            "[green]https://github.com/dart-security[/green]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        authors.add_row(
+            "Adan Vazquez",
+            "[blue]https://github.com/AdanOSwin[/blue]",
+            "[underline]hc-security.com.mx[/underline]"
+        )
+        console.print(authors)
+        time.sleep(5)
+        os.system ("clear")
     
     run()
 except KeyboardInterrupt as kbi:
