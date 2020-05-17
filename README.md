@@ -64,11 +64,11 @@ ip_priv = ni.ifaddresses('enps3')[ni.AF_INET][0]['addr']
 ```
 Kali linux:
 ```python
-ip_priv = ni.ifaddresses('eth1')[ni.AF_INET][0]['addr']
+ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
 ```
 o si tienes __eth1__
 ```python
-ip_priv = ni.ifaddresses('eth0')[ni.AF_INET][0]['addr']
+ip_priv = ni.ifaddresses('eth1')[ni.AF_INET][0]['addr']
 ```
 
 # Demo.
