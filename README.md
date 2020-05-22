@@ -1,9 +1,11 @@
 # Knight-Proyect-
 
 [![Build Status](https://travis-ci.com/MoisesTapia/Knight-Proyect-.svg?branch=master)](https://travis-ci.com/MoisesTapia/Knight-Proyect-)
+[![Coverage Status](https://coveralls.io/repos/github/MoisesTapia/Knight-Proyect-/badge.svg?branch=master)](https://coveralls.io/github/MoisesTapia/Knight-Proyect-?branch=master)
 [![Python](https://img.shields.io/badge/Python-3.x-blue)](https://www.python.org/download/releases/3.0/)
 [![System](https://img.shields.io/badge/KaliLinux-2020.1-orange)](https://www.kali.org/)
 [![Channel](https://img.shields.io/badge/channel-YouTube-red)](https://www.youtube.com/channel/UCiuZK5geN3OCGeBxuXMfHEQ)
+
 
 #### Depedencias
 Para saber las dependencias que ocupamos en el script podemos correr la carpeta __Verify__ que se encuentra en nuestro proyecto, para correr esta carpeta nesecitamos tener instalada la herramienta de [inspec](https://www.inspec.io/downloads/) la cual nos permitira __verificar__ si los modulos que esta herramienta ocupa estan instalados.
